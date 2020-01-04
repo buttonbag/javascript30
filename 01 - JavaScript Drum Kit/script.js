@@ -9,7 +9,7 @@ window.addEventListener('keydown', function(e) {
 
 function removeTransition(e) {
     if(e.propertyName !== 'transform') return; //skip if it's not a transform
-    console.log(e.propertyName);
+    // console.log(e.propertyName);
     this.classList.remove('playing');
 }
 
