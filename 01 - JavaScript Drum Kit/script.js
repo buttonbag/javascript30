@@ -8,8 +8,10 @@ window.addEventListener('keydown', function(e) {
 });
 
 function removeTransition(e) {
-    console.log(e);
+    if(e.propertyName !== 'transform') return; //skip if it's not a transform
+    console.log(e.propertyName);
+    this.classList.remove('playing');
 }
 
-const keys = document.querySelectorAll('key');
-keys.forEach(key => key.addEventListener('transitionEnd', removeTransition));
+const keys = document.querySelectorAll('.key');
+keys.forEach(key => key.addEventListener('transitionend', removeTransition)); //The transitionend event is fired when a CSS transition has completed
