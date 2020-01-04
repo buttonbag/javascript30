@@ -50,3 +50,6 @@ body {
   transition-timing-function: cubic-bezier(.44,.66,0,1.7);
 }
 
+.second-hand {
+    height: 2px;
+}
