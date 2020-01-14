@@ -9,6 +9,7 @@
     <div class="option">
       <label for="">Lock Stroke</label>
       <input type="checkbox" name="strokeLock" id="">
+      <input type="range" name="strokeLevel" id="">
     </div>
     <div class="option">
       <label for="">Hue</label>
@@ -28,7 +29,7 @@ canvas.height = window.innerHeight;
 ctx.strokeStyle = '#FABDAD';
 ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
-ctx.lineWidth = 100;
+// ctx.lineWidth = 100;
 
 let isDrawing = false; 
 let lastX = 0;
@@ -37,6 +38,7 @@ let hue = 0;
 let direction = true;
 
 const strokeLock = document.querySelector('input[name="strokeLock"]');
+const strokeLevel = document.querySelector('input[name="strokeLevel"]');
 const clearBtn = document.querySelector('button');
 
 function draw(e) {
@@ -49,7 +51,7 @@ function draw(e) {
   // go to
   ctx.lineTo(e.offsetX, e.offsetY);
   ctx.stroke();
-  [lastX,lastY] = [e.offsetX, e.offsetY]; // destructuring an array (ES6)
+  [lastX,lastY] = [e.offsetX, e.offsetY]; //destructuring an array (ES6)
   
   hue++;
   if(hue >= 360) {
@@ -58,17 +60,18 @@ function draw(e) {
 
 
   // lock the stroke to a single width
+  strokeLock.addEventListener('change', () => ctx.lineWidth = strokeLevel.value); //fixes bug that starts stroke at the last lineWidth setting
   if(strokeLock.checked) {
-    ctx.lineWidth = 50;
+    ctx.lineWidth = strokeLevel.value;
   } else {
-    if(ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
-      direction = !direction;
-    }
-    if(direction) {
-      ctx.lineWidth++;
+      if(ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+        direction = !direction; 
+      }
+      if(direction) {
+        ctx.lineWidth++;
     } else {
-      ctx.lineWidth--;
-    }
+        ctx.lineWidth--;
+      }
   }
 }
 
@@ -80,9 +83,11 @@ canvas.addEventListener('mousedown', (e) => {
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mouseup', () => isDrawing = false);
 canvas.addEventListener('mouseout', () => isDrawing = false);
+
 clearBtn.addEventListener('click', function(){
   ctx.clearRect(0,0, canvas.width, canvas.height);
 });
+
 
 </script>
 
