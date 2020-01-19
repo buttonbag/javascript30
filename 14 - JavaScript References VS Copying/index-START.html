@@ -8,14 +8,36 @@
 
   <script>
     // start with strings, numbers and booleans
+    let age = 10;
+    let age2 = age;
+    console.log(age, age2); // > 10 10
+    age = 20;
+    console.log(age, age2); // > 20 10
+
+    let name = 'Louie';
+    let name2 = name;
+    console.log(name, name2); // > Louie Louie
+    name = 'Lou'
+    console.log(name, name2); // > Lou Louie
+
 
     // Let's say we have an array
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
 
     // and we want to make a copy of it.
+    const team = players;
+
+    console.log(players, team); 
+    // > Array(4) [ "Wes", "Sarah", "Ryan", "Poppy" ] 
+    // > Array(4) [ "Wes", "Sarah", "Ryan", "Poppy" ]
 
     // You might think we can just do something like this:
+    // team[3] = 'Lux'; 
+    // THIS CHANGES THE ORIGINAL ARRAY (players)
 
+    console.log(team); // > Array(4) [ "Wes", "Sarah", "Ryan", "Lux" ]
+    console.log(players); // > Array(4) [ "Wes", "Sarah", "Ryan", "Lux" ]
+    
     // however what happens when we update that array?
 
     // now here is the problem!
@@ -25,12 +47,30 @@
     // Why? It's because that is an array reference, not an array copy. They both point to the same array!
 
     // So, how do we fix this? We take a copy instead!
+    const team2 = players.slice();
 
-    // one way
+    team2[3] = 'LUX'; // THIS DOES NOT CHANGE THE ORIGINAL ARRAY (players)
+    
+    console.log(players, team2); 
+    // > Array(4) [ "Wes", "Sarah", "Ryan", "Poppy" ] 
+    // > Array(4) [ "Wes", "Sarah", "Ryan", "LUX" ]
+
+    // that's one way
 
     // or create a new array and concat the old one in
+    const team3 = [].concat(players);
 
     // or use the new ES6 Spread
+    const team4 = [...players]; // takes eveery item out of iterable and put it into the containing array
+    team4[4] = 'yahooo';
+    console.log(team4);
+    // > Array(5) [ "Wes", "Sarah", "Ryan", "Poppy", "yahooo" ]
+
+    const team5 = Array.from(players);
+    team5[4] = 'coolbeans';
+    console.log(players, team5); 
+    // > Array(4) [ "Wes", "Sarah", "Ryan", "Poppy" ]
+    // > Array(5) [ "Wes", "Sarah", "Ryan", "Poppy", "coolbeans" ]
 
     // now when we update it, the original one isn't changed
 
@@ -43,12 +83,33 @@
     };
 
     // and think we make a copy:
+    // const captain = person; 
+    // captain.number = 99;
+    // console.log(person); 
+    // DOES NOT WORK FOR OBJECTS
+    // > Object { name: "Wes Bos", age: 80, number: 99 }
 
-    // how do we take a copy instead?
+    // how do we take a copy instead? WITH Object.assign
+    const captain2 = Object.assign({}, person, { number: 99, age: 12 });
+    console.log(captain2);
 
     // We will hopefully soon see the object ...spread
 
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+    const wes = {
+      name: 'Wes',
+      age: 100,
+      social: {
+        twitter: '@wesbos',
+        facebook: 'wesbos.developer'
+      }
+    };
+    
+    console.log(wes);
+
+    const dev = Object.assign({}, wes);
+
+    const dev2 = JSON.parse(JSON.stringify(wes));
 
   </script>
 
