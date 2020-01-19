@@ -9,7 +9,7 @@
 
     html {
       font-family: sans-serif;
-      background: #ffc600;
+      background: #baddad;
     }
 
     .inbox {
@@ -96,30 +96,31 @@
   </div>
 
 <script>
-  const checkboxes = document.querySelectorAll('.inbox input');
-  let lastChecked;
-  // test for shift key and if checkbox is being checked
+  // find all checkbox inputs
+  const chkbx = document.querySelectorAll('.inbox input[type="checkbox"]');
+  let lastChecked; // keep track of the checkbox .checked
   function handleCheck(e) {
+    //test for shiftKey down, test if they are checking it  
+    let inBetween = false;
     if(e.shiftKey && this.checked) {
-      let inBetween = false;
-      checkboxes.forEach(checkbox => {
-        // console.log(checkbox);
-        if(checkbox === this || checkbox === lastChecked) {
+      chkbx.forEach( chkbx => {
+        console.log(chkbx);
+        if(chkbx === this || chkbx === lastChecked) {
           inBetween = !inBetween;
-          console.log('start checking for inBetween');
+          console.log('starting to check them in between')
         }
-
         if(inBetween) {
-          checkbox.checked = true;
+          chkbx.checked = true;
         }
       });
     }
 
-    lastChecked = this;
+    lastChecked = this; // keep track of the checkbox .checked
   }
-
-  checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+  // forEach checkbox within the range of 
+  chkbx.forEach( chkbx => chkbx.addEventListener('click', handleCheck))
 
 </script>
+
 </body>
 </html>
