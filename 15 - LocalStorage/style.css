@@ -58,12 +58,12 @@ h2 {
 }
 
 .plates input + label:before {
-  content: '⬜️';
+  content: '⬜';
   margin-right: 10px;
 }
 
 .plates input:checked + label:before {
-  content: '🌮';
+  content: '✅';
 }
 
 .add-items {
@@ -74,4 +74,8 @@ h2 {
   padding: 10px;
   outline: 0;
   border: 1px solid rgba(0,0,0,0.1);
+}
+
+.buttons {
+  margin: 10px auto;
 }

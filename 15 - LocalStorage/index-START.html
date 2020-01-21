@@ -19,12 +19,14 @@
     <ul class="plates">
       <li>Loading Tapas...</li>
     </ul>
-    <form class="add-items">
+    <form class="add-items" autocomplete="off">
       <input type="text" name="item" placeholder="Item Name" required>
       <input type="submit" value="+ Add Item">
-      <input type="button" name="clear" value="Clear All">
-      <input type="button" name="check" value="Check All">
-      <input type="button" name="uncheck" value="Uncheck All">
+      <div class="buttons">
+        <input type="button" name="clear" value="Clear All">
+        <input type="button" name="check" value="Check All">
+        <input type="button" name="uncheck" value="Uncheck All">
+      </div>
     </form>
   </div>
 
