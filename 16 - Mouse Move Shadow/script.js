@@ -6,7 +6,7 @@ function shadow(e) {
     const { offsetWidth: width,  offsetHeight: height } = hero; 
     let { offsetX: x, offsetY: y } = e;
     
-    // console.log(this, e.target);
+    /* since there is a child element (h1), the offset of that element gets read instead of hero even tho the event listener is on hero. This makes sure that the hero gets read even if hovering over h1. */
     if (this !== e.target) {
         x = x + e.target.offsetLeft;
         y = y + e.target.offsetTop;
