@@ -42,7 +42,19 @@
 
 <button></button>
 <script>
+const divs = document.querySelectorAll('div');
 
+function logText(e) {
+  console.log(this.classList.value);
+  // e.stopPropagation(); //stops bubbling so you only click on the element you meant to click on
+}
+
+divs.forEach(div => {
+  div.addEventListener('click', logText, {
+    capture: true, //reverses the order of bubbling
+    // once: true; //disables after triggering once
+  })
+})
 </script>
 </body>
 </html>
