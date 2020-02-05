@@ -31,26 +31,60 @@
 
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    const fifteen = inventors.filter(inventor => 
+      (inventor.year > 1499 && inventor.year < 1599 )? true : false);
+    console.log('born in 1500s', fifteen);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
+    const fullNames = inventors.map(inventor => inventor.first + ' ' + inventor.last);
+    console.table('fullNames', fullNames);
+
+    //extra credit: last names only
+    const surnames = inventors.map(inventor => inventor.last);
+    console.table('surnames', surnames);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const youngest = inventors.sort( (a,b) => (a.year > b.year)? 1 : -1 );
+
+    console.table('youngest', youngest);
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
+    const totalYears = inventors.reduce((total, inventor) => total + (inventor.passed - inventor.year), 0);
+
+    console.log('total years', totalYears);
+    // The reduce() method executes a reducer function (that you provide) on each element of the array, resulting in a single output value.
 
     // 5. Sort the inventors by years lived
+    const lifespan = inventors.sort( (a,b) => (a.year-a.passed < b.year-b.passed)? 1 : -1 );
+
+    console.table('lifespan', lifespan);
     
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const alpha = inventors.sort((a,b) => (a.last > b.last)? 1 : -1);
+
+    console.table('alpha', alpha);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
+    const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+    // array.reduce(function(total, currentValue, currentIndex, arr), initialValue)
+
+    const transport = data.reduce(function(obj, item){
+      if (!obj[item]) {
+        obj[item] = 0;  
+      }
+      obj[item]++;
+      return obj;
+    },{}); // blank starting point because we don't know how many objects there are && if you add to the list in the future, you won't have to update the code
+
+    console.log(transport);
 
   </script>
 </body>
