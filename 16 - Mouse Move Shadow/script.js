@@ -1,6 +1,6 @@
 const hero = document.querySelector('.hero');
 const text = hero.querySelector('h1');
-const walk = 20;
+const distance = 20;
 
 function shadow(e) {
     const { offsetWidth: width,  offsetHeight: height } = hero; 
@@ -13,14 +13,14 @@ function shadow(e) {
     }
 
     
-    const xWalk = (x / width * walk) - (walk /2);
-    const yWalk = (y / width * walk) - (walk /2);
-    console.log(xWalk,yWalk);
+    const xDistance = (x / width * distance) - (distance /2);
+    const yDistance = (y / width * distance) - (distance /2);
+    console.log(xDistance,yDistance);
     text.style.textShadow = `
-        ${xWalk}px ${yWalk}px 0 rgba(255,0,255,.7),
-        ${xWalk * -1}px ${yWalk}px 0 rgba(255,255,0,.7),
-        ${xWalk * -1}px ${yWalk * -1}px 0 rgba(0,255,255,.7),
-        ${xWalk}px ${yWalk * -1}px 0 rgba(255,0,0,.7)
+        ${xDistance}px ${yDistance}px 0 rgba(255,0,255,.7),
+        ${xDistance * -1}px ${yDistance}px 0 rgba(255,255,0,.7),
+        ${xDistance * -1}px ${yDistance * -1}px 0 rgba(0,255,255,.7),
+        ${xDistance}px ${yDistance * -1}px 0 rgba(255,0,0,.7)
     `;
 }
 
